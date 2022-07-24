@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+
 struct RecipeDetailView: View {
-    
+        
     let recipe: Recipe
     
     private let listBackgroundColor = AppColor.background
@@ -41,7 +42,7 @@ struct RecipeDetailView: View {
                         let direction = recipe.directions[index]
                         HStack {
                             Text("\(index + 1). ").bold()
-                            Text("\(direction.isOptional ? "Optional" : "")" + "\(direction.description)")
+                            Text("\(direction.isOptional ? "Optional: " : "")" + "\(direction.description)")
                         }.foregroundColor(listTextColor)
                     }
                 }.listRowBackground(listBackgroundColor)

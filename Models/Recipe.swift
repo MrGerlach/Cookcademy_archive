@@ -89,7 +89,7 @@ extension Recipe {
                             Ingredient(name: "Sauce", quantity: 3, unit: .tsp),
                             Ingredient(name: "Sachet", quantity: 1, unit: .none),
                             Ingredient(name: "Foam Milk", quantity: 1, unit: .tbs),
-                            Ingredient(name: "Strokes", quantity: 10, unit: .none)
+                            Ingredient(name: "Stroke", quantity: 10, unit: .none)
                         ],
                         directions:  [
                             Direction(description: "Put sauce on teaspoon and give it to the cat)", isOptional: false),
