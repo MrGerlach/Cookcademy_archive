@@ -81,6 +81,23 @@ struct Ingredient {
 
 extension Recipe {
     static let testRecipes: [Recipe] = [
+        Recipe(mainInformation: MainInformation(name: "Cat's sauce",
+                                                         description: "Sauce that cats love!",
+                                                         author: "Punto",
+                                                         category: .dessert),
+                        ingredients: [
+                            Ingredient(name: "Sauce", quantity: 3, unit: .tsp),
+                            Ingredient(name: "Sachet", quantity: 1, unit: .none),
+                            Ingredient(name: "Foam Milk", quantity: 1, unit: .tbs),
+                            Ingredient(name: "Strokes", quantity: 10, unit: .none)
+                        ],
+                        directions:  [
+                            Direction(description: "Put sauce on teaspoon and give it to the cat)", isOptional: false),
+                            Direction(description: "In the meantime, ask your partner to prepare sachet. Put it into the cat's bowl", isOptional: false),
+                            Direction(description: "Cats love foam milk. And you are probably coffelover. Prepare your favourite cappucino and give the foam to the cat", isOptional: false),
+                            Direction(description: "Sometimes your cat wants to receive some strokes. Sometimes not. Check if it wants them.", isOptional: true)
+                         ]
+                 ),
         Recipe(mainInformation: MainInformation(name: "Dad's Mashed Potatoes",
                                                          description: "Buttery salty mashed potatoes!",
                                                          author: "Josh",
