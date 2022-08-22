@@ -19,7 +19,7 @@ struct RecipeListView: View {
 
     
     var body: some View {
-        NavigationView{
+       // NavigationView{
         List {
             ForEach(recipes) { recipe in
                 NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: recipe))
@@ -60,7 +60,7 @@ struct RecipeListView: View {
         })
     }
     }
-}
+//}
 extension RecipeListView  {
     
     private var recipes: [Recipe] {
