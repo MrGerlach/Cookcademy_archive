@@ -85,6 +85,16 @@ struct Ingredient {
         
         var singularName: String { String(rawValue.dropLast()) }
     }
+    
+    init(name: String, quantity: Double, unit: Unit) {
+        self.name = name
+        self.quantity = quantity
+        self.unit = unit
+    }
+    
+    init() {
+        self.init(name: "", quantity: 0.0, unit: .none)
+    }
 }
 
 extension Recipe {
