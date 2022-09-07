@@ -10,9 +10,15 @@ import SwiftUI
   private let listBackgroundColor = AppColor.background
   private let listTextColor = AppColor.foreground
 
-struct ModifyIngredientView: View {
+struct ModifyIngredientView: ModifyComponentView {
     @Binding var ingredient : Ingredient
     let createAction: ((Ingredient) -> Void)
+    
+    init(component: Binding<Ingredient>, createAction: @escaping (Ingredient) -> Void) {
+        self._ingredient = component
+        self.createAction = createAction
+    }
+    
     @Environment(\.presentationMode) private var mode
  
     var body: some View {
@@ -61,8 +67,11 @@ extension NumberFormatter {
  
 
 struct ModifyIngredientView_Previews: PreviewProvider {
-                @State static var emptyIngredient = Ingredient()
+    @State static var emptyIngredient = Recipe.testRecipes[0].ingredients[0]
     static var previews: some View {
-        ModifyIngredientView(ingredient: $emptyIngredient) {ingredient in print(ingredient)}
-    }
+        NavigationView{
+        ModifyIngredientView(component: $emptyIngredient) {ingredient in print(ingredient)
+        }
+        } .navigationTitle("Add Ingredient")
+  }
 }
