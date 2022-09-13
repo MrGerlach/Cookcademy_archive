@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-  private let listBackgroundColor = AppColor.background
-  private let listTextColor = AppColor.foreground
+  @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
+  @AppStorage(“listTextColor”) private var listTextColor = AppColor.foreground
 
 struct ModifyIngredientView: ModifyComponentView {
     @Binding var ingredient : Ingredient

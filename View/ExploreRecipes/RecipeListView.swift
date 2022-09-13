@@ -15,12 +15,11 @@ struct RecipeListView: View {
     @State private var isPresenting = false
     @State private var newRecipe = Recipe()
     
-    private let listBackgroundColor = AppColor.background
+    @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
     private let listForegroundColor = AppColor.foreground
 
     
     var body: some View {
-       // NavigationView{
         List {
             ForEach(recipes) { recipe in
                 NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: binding(for: recipe)))
@@ -67,7 +66,8 @@ struct RecipeListView: View {
         })
     }
     }
-//}
+
+
 extension RecipeListView  {
     
     enum ViewStyle {
