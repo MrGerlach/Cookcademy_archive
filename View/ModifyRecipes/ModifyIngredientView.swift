@@ -7,11 +7,16 @@
 
 import SwiftUI
 
-  @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
-  @AppStorage(“listTextColor”) private var listTextColor = AppColor.foreground
+
 
 struct ModifyIngredientView: ModifyComponentView {
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     @Binding var ingredient : Ingredient
+    @Environment(\.presentationMode) private var mode
+    @EnvironmentObject private var recipeData: RecipeData
+    
     let createAction: ((Ingredient) -> Void)
     
     init(component: Binding<Ingredient>, createAction: @escaping (Ingredient) -> Void) {
@@ -19,12 +24,12 @@ struct ModifyIngredientView: ModifyComponentView {
         self.createAction = createAction
     }
     
-    @Environment(\.presentationMode) private var mode
- 
+    
     var body: some View {
-        VStack{
+//        VStack{
         Form {
             TextField("Ingredient Name", text: $ingredient.name)
+                .listRowBackground(listBackgroundColor)
             Stepper(value: $ingredient.quantity, in: 0...100, step: 0.5) {
                 HStack{
                     Text("Quantity: ")
@@ -32,6 +37,7 @@ struct ModifyIngredientView: ModifyComponentView {
                         .keyboardType(.numbersAndPunctuation)
                 }
             }
+            .listRowBackground(listBackgroundColor)
             Picker(selection: $ingredient.unit, label:
                 HStack {
                     Text("Unit")
@@ -43,6 +49,7 @@ struct ModifyIngredientView: ModifyComponentView {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
+                .listRowBackground(listBackgroundColor)
             
             HStack {
                 Spacer()
@@ -52,9 +59,11 @@ struct ModifyIngredientView: ModifyComponentView {
                 }
                 Spacer()
             }
+            .listRowBackground(listBackgroundColor)
         }
+        .foregroundColor(listTextColor)
         }
-    }
+//    }
     }
 
 extension NumberFormatter {
@@ -70,8 +79,9 @@ struct ModifyIngredientView_Previews: PreviewProvider {
     @State static var emptyIngredient = Recipe.testRecipes[0].ingredients[0]
     static var previews: some View {
         NavigationView{
-        ModifyIngredientView(component: $emptyIngredient) {ingredient in print(ingredient)
-        }
+            ModifyIngredientView(component: $emptyIngredient) {ingredient in
+                print(ingredient)
+            }
         } .navigationTitle("Add Ingredient")
   }
 }

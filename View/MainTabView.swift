@@ -13,10 +13,10 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             RecipeCategoryGridView()
-                .tabItem { Label("Recipes", systemImage: "list.dash")}
+                .tabItem { Label("Recipes", systemImage: "list.dash") }
             NavigationView {
                 RecipeListView(viewStyle: .favorites)
-            } .tabItem { Label("Favorites", systemImage: "heart.fill")}
+            } .tabItem { Label("Favorites", systemImage: "heart.fill") }
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gear") }
         }

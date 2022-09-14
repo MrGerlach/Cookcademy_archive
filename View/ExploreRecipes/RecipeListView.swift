@@ -9,15 +9,17 @@ import SwiftUI
 
 struct RecipeListView: View {
     
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+
+    
     @EnvironmentObject private var recipeData: RecipeData
 //    let category: MainInformation.Category
     let viewStyle: ViewStyle
+    
     @State private var isPresenting = false
     @State private var newRecipe = Recipe()
     
-    @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
-    private let listForegroundColor = AppColor.foreground
-
     
     var body: some View {
         List {
@@ -25,7 +27,7 @@ struct RecipeListView: View {
                 NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: binding(for: recipe)))
             }
             .listRowBackground(listBackgroundColor)
-            .foregroundColor(listForegroundColor)
+            .foregroundColor(listTextColor)
         }
         .navigationTitle(navigationTitle)
         .toolbar(content: {
@@ -33,7 +35,6 @@ struct RecipeListView: View {
                 Button(action: {
                     newRecipe = Recipe()
                     newRecipe.mainInformation.category = recipes.first?.mainInformation.category ?? .breakfast
-                    
                     isPresenting = true
                 }, label: {
                     Image(systemName: "plus")
@@ -104,7 +105,7 @@ struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             RecipeListView(viewStyle: .singleCategory(.breakfast))
-                .environmentObject(RecipeData())
-    }
+        }
+        .environmentObject(RecipeData())
     }
 }
