@@ -11,13 +11,12 @@ import SwiftUI
 struct RecipeDetailView: View {
 
     @AppStorage("hideOptionalSteps") private var hideOptionalSteps: Bool = false
+    @AppStorage("listBackgroundColor") private var listBackgroundColor: Color = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor: Color = AppColor.foreground
     
     @Binding var recipe: Recipe
-    
-    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
-    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
-    
     @State private var isPresenting = false
+    @EnvironmentObject private var recipeData: RecipeData
     
     var body: some View {
         VStack {
@@ -40,17 +39,22 @@ struct RecipeDetailView: View {
                         Text(ingredient.description)
                             .foregroundColor(listTextColor)
                     }
-                }.listRowBackground(listBackgroundColor)
+                }
+                .listRowBackground(listBackgroundColor)
                 Section(header: Text("Directions")){
                     ForEach(recipe.directions.indices, id: \.self){ index in
                         let direction = recipe.directions[index]
+                        if direction.isOptional && hideOptionalSteps {
+                            EmptyView()
                         HStack {
                             let index = recipe.index(of: direction, excludingOptionalDirections: hideOptionalSteps) ?? 0
                             Text("\(index + 1). ").bold()
                             Text("\(direction.isOptional ? "Optional: " : "")" + "\(direction.description)")
-                        }.foregroundColor(listTextColor)
+                        }
+                        .foregroundColor(listTextColor)
                     }
-                }.listRowBackground(listBackgroundColor)
+                }
+                    .listRowBackground(listBackgroundColor)
             }
         }
         .navigationTitle(recipe.mainInformation.name)

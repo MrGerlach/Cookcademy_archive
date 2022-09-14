@@ -29,12 +29,12 @@ protocol ModifyComponentView: View {
 
 struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyComponentView>: View where DestinationView.Component == Component{
     
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     @Binding var components: [Component]
     @State private var newComponent = Component()
     
-    @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
-    @AppStorage(“listTextColor”) private var listTextColor = AppColor.foreground
-
     
 var body: some View {
         VStack {

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ModifyMainInformationView: View {
-    @AppStorage(“listBackgroundColor”) private var listBackgroundColor = AppColor.background
-    @AppStorage(“listTextColor”) private var listTextColor = AppColor.foreground
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     @Binding var mainInformation: MainInformation
     
@@ -17,14 +17,11 @@ struct ModifyMainInformationView: View {
         Form {
             TextField("Recipe name", text: $mainInformation.name)
                 .listRowBackground(listBackgroundColor)
-                .foregroundColor(listTextColor)
             TextField("Author", text: $mainInformation.author)
                 .listRowBackground(listBackgroundColor)
-                .foregroundColor(listTextColor)
             Section(header: Text("Description")) {
                 TextEditor(text: $mainInformation.description)
                         .listRowBackground(listBackgroundColor)
-                        .foregroundColor(listTextColor)
             }
             Picker(selection: $mainInformation.category, label:
                     HStack {
@@ -38,9 +35,10 @@ struct ModifyMainInformationView: View {
                     }
                 }
                 .listRowBackground(listBackgroundColor)
-                .foregroundColor(listTextColor)
+                
             .pickerStyle(MenuPickerStyle())
         }
+        .foregroundColor(listTextColor)
     }
 }
 
