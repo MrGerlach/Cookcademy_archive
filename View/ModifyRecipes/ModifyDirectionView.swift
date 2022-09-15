@@ -37,10 +37,8 @@ struct ModifyDirectionView: ModifyComponentView {
                     mode.wrappedValue.dismiss()
                 }
                 Spacer()
-            }
-            .listRowBackground(listBackgroundColor)
-        }
-        .foregroundColor(listTextColor)
+            } .listRowBackground(listBackgroundColor)
+        } .foregroundColor(listTextColor)
 }
 }
 

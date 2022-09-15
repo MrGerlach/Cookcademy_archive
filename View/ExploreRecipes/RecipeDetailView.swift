@@ -39,8 +39,7 @@ struct RecipeDetailView: View {
                         Text(ingredient.description)
                             .foregroundColor(listTextColor)
                     }
-                }
-                .listRowBackground(listBackgroundColor)
+                }.listRowBackground(listBackgroundColor)
                 Section(header: Text("Directions")){
                     ForEach(recipe.directions.indices, id: \.self){ index in
                         let direction = recipe.directions[index]
@@ -50,14 +49,11 @@ struct RecipeDetailView: View {
                             let index = recipe.index(of: direction, excludingOptionalDirections: hideOptionalSteps) ?? 0
                             Text("\(index + 1). ").bold()
                             Text("\(direction.isOptional ? "Optional: " : "")" + "\(direction.description)")
-                        }
-                        .foregroundColor(listTextColor)
+                        }.foregroundColor(listTextColor)
                     }
-                }
-                    .listRowBackground(listBackgroundColor)
+                }.listRowBackground(listBackgroundColor)
             }
-        }
-        .navigationTitle(recipe.mainInformation.name)
+        }.navigationTitle(recipe.mainInformation.name)
         
         .toolbar {
             ToolbarItem {
@@ -88,6 +84,8 @@ struct RecipeDetailView: View {
         }
     }
 }
+}
+
 
 struct RecipeDetailView_Previews: PreviewProvider {
     @State static var recipe = Recipe.testRecipes[0]
@@ -97,3 +95,4 @@ struct RecipeDetailView_Previews: PreviewProvider {
     }
     }
 }
+

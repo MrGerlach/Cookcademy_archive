@@ -33,12 +33,10 @@ struct ModifyMainInformationView: View {
                 }) {
                     ForEach(MainInformation.Category.allCases, id: \.self) { category in Text(category.rawValue)
                     }
-                }
-                .listRowBackground(listBackgroundColor)
+                }.listRowBackground(listBackgroundColor)
                 
             .pickerStyle(MenuPickerStyle())
-        }
-        .foregroundColor(listTextColor)
+        }.foregroundColor(listTextColor)
     }
 }
 

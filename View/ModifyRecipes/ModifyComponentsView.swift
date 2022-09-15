@@ -67,13 +67,12 @@ var body: some View {
                     .onDelete { components.remove(atOffsets: $0) }
                     .onMove { indices, newOffset in
                         components.move(fromOffsets: indices, toOffset: newOffset)
-                    }
-                    .listRowBackground(listBackgroundColor)
+                    } .listRowBackground(listBackgroundColor)
+                    
                     NavigationLink("Add another \(Component.singularName())", destination: addComponentView)
                         .buttonStyle(PlainButtonStyle())
                         .listRowBackground(listBackgroundColor)
-                }
-                .foregroundColor(listTextColor)
+                } .foregroundColor(listTextColor)
             }
         }
     }
