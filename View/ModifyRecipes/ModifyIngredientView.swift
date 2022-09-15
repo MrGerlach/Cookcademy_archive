@@ -26,7 +26,6 @@ struct ModifyIngredientView: ModifyComponentView {
     
     
     var body: some View {
-//        VStack{
         Form {
             TextField("Ingredient Name", text: $ingredient.name)
                 .listRowBackground(listBackgroundColor)
@@ -36,8 +35,7 @@ struct ModifyIngredientView: ModifyComponentView {
                     TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter.decimal)
                         .keyboardType(.numbersAndPunctuation)
                 }
-            }
-            .listRowBackground(listBackgroundColor)
+            }.listRowBackground(listBackgroundColor)
             Picker(selection: $ingredient.unit, label:
                 HStack {
                     Text("Unit")
@@ -58,12 +56,9 @@ struct ModifyIngredientView: ModifyComponentView {
                     mode.wrappedValue.dismiss()
                 }
                 Spacer()
-            }
-            .listRowBackground(listBackgroundColor)
+            }.listRowBackground(listBackgroundColor)
+        }.foregroundColor(listTextColor)
         }
-        .foregroundColor(listTextColor)
-        }
-//    }
     }
 
 extension NumberFormatter {

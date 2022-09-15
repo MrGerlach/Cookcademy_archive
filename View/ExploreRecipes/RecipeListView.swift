@@ -14,7 +14,6 @@ struct RecipeListView: View {
 
     
     @EnvironmentObject private var recipeData: RecipeData
-//    let category: MainInformation.Category
     let viewStyle: ViewStyle
     
     @State private var isPresenting = false
@@ -35,7 +34,7 @@ struct RecipeListView: View {
                 Button(action: {
                     newRecipe = Recipe()
                     newRecipe.mainInformation.category = recipes.first?.mainInformation.category ?? .breakfast
-                    isPresenting = true
+                        isPresenting = true
                 }, label: {
                     Image(systemName: "plus")
                 })
@@ -51,13 +50,10 @@ struct RecipeListView: View {
                             }
                         }
                         ToolbarItem(placement: .confirmationAction) {
-                            if case .favorites = viewStyle {
-                                              newRecipe.isFavorite = true
-                                            }
                             if newRecipe.isValid {
                                 Button("Add"){
-                                recipeData.add(recipe: newRecipe)
-                                isPresenting = false
+                                    recipeData.add(recipe: newRecipe)
+                                    isPresenting = false
                                 }
                             }
                         }
@@ -66,7 +62,7 @@ struct RecipeListView: View {
             }
         })
     }
-    }
+}
 
 
 extension RecipeListView  {
