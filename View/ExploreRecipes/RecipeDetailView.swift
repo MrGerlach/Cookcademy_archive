@@ -41,10 +41,11 @@ struct RecipeDetailView: View {
                     }
                 }.listRowBackground(listBackgroundColor)
                 Section(header: Text("Directions")){
-                    ForEach(recipe.directions.indices, id: \.self){ index in
+                    ForEach(recipe.directions.indices, id: \.self) { index in
                         let direction = recipe.directions[index]
                         if direction.isOptional && hideOptionalSteps {
                             EmptyView()
+                        } else {
                         HStack {
                             let index = recipe.index(of: direction, excludingOptionalDirections: hideOptionalSteps) ?? 0
                             Text("\(index + 1). ").bold()
